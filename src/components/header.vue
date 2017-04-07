@@ -33,14 +33,17 @@
     border-bottom: 1px solid #f3f3f3;
     position: fixed;
     width: 100%;
+    z-index: 10;
   }
   .header .item{
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     height: 42px;
     justify-content: space-between;
     padding: 6px 3%;
+    background: #fff;
   }
   .logo{
     width: 42px;
@@ -52,7 +55,7 @@
     color: rgb(35, 132, 232);
     font-size: 14px;
   }
-  .search{
+  .header .search{
     background: #f5f5f5;
   }
   .inp{

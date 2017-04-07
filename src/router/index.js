@@ -15,6 +15,21 @@ export default new Router({
       path:'/movie',
       component:App.components.vMovies,
       name:'movie'
+    },
+    {
+      path:'/movie/list',
+      component:App.components.movieList,
+      name:'movie-list'
+    },
+    {
+      path:'/movie/search',
+      component:App.components.movieSearch,
+      name:'movie-search'
+    },
+    {
+      path:'/movie/subject/:id',
+      component:App.components.movieDetail,
+      name:'movie-detail'
     }
   ]
 })
