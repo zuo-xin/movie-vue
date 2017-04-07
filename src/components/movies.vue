@@ -1,24 +1,97 @@
 <template>
   <div class="movie">
-    <section class="secion in-theatre">
+    <section class="section in-theatre">
       <h1>
-        <span>{{title1}}</span>
-        <!-- <router-link tag="span" :to="{name: 'movie-list', query: {type: type1}}" class="more">更多>
-        </router-link> -->
+        <span>{{inTheatre.title}}</span>
+        <router-link  :to="{name: 'movie-list', query: {type: inTheatre.type}}" class="more">更多>
+        </router-link>
       </h1>
-      <div class="box"></div>
+      <div class="box">
+        <router-link class="item" :to="{name:'movie-detail',params:{id:item.id}}" v-for="item in inTheatre.subject">
+          <img class="img" :src="item.img" alt="">
+          <p class="info">{{item.title}}</p>
+          <p class="mark">评分：<span>{{item.mark}}</span>/10</p>
+        </router-link>
+        <!-- <div class="item">
+          <img class="img" src="../assets/1.jpg" alt="">
+          <p class="info">嫌疑人X的献身</p>
+          <p class="mark">评分：<span>6.1</span>/10</p>
+        </div>
+        <div class="item">
+          <img class="img" src="../assets/1.jpg" alt="">
+          <p class="info">嫌疑人X的献身</p>
+          <p class="mark">评分：<span>6.1</span>/10</p>
+        </div>
+        <div class="item">
+          <img class="img" src="../assets/1.jpg" alt="">
+          <p class="info">嫌疑人X的献身</p>
+          <p class="mark">评分：<span>6.1</span>/10</p>
+        </div>
+        <div class="item">
+          <img class="img" src="../assets/1.jpg" alt="">
+          <p class="info">嫌疑人X的献身</p>
+          <p class="mark">评分：<span>6.1</span>/10</p>
+        </div>
+        <div class="item">
+          <img class="img" src="../assets/1.jpg" alt="">
+          <p class="info">嫌疑人X的献身</p>
+          <p class="mark">评分：<span>6.1</span>/10</p>
+        </div>
+        <div class="item">
+          <img class="img" src="../assets/1.jpg" alt="">
+          <p class="info">嫌疑人X的献身</p>
+          <p class="mark">评分：<span>6.1</span>/10</p>
+        </div>
+        <div class="item">
+          <img class="img" src="../assets/1.jpg" alt="">
+          <p class="info">嫌疑人X的献身</p>
+          <p class="mark">评分：<span>6.1</span>/10</p>
+        </div> -->
+      </div>
     </section>
 
-    <section class="secion comming">
+    <section class="section coming">
       <h1>
-        <span>{{title2}}</span>
+        <span>{{coming.title}}</span>
+        <router-link :to="{name: 'movie-list', query: {type:coming.type}}" class="more">更多>
+        </router-link>
+      </h1>
+      <div class="box">
+        <router-link class="item" :to="{name:'movie-detail',params:{id:item.id}}" v-for="item in coming.subject">
+          <img class="img" :src="item.img" alt="">
+          <p class="info">{{item.title}}</p>
+          <p class="mark">评分：<span>{{item.mark}}</span>/10</p>
+        </router-link>
+      </div>
+    </section>
+    <section class="section newM">
+      <h1>
+        <span>{{newM.title}}</span>
+        <router-link :to="{name: 'movie-list', query: {type:newM.type}}" class="more">更多>
+        </router-link>
+      </h1>
+      <div class="box">
+        <router-link class="item" :to="{name:'movie-detail',params:{id:item.id}}" v-for="item in newM.subject">
+          <img class="img" :src="item.img" alt="">
+          <p class="info">{{item.title}}</p>
+          <p class="mark">评分：<span>{{item.mark}}</span>/10</p>
+        </router-link>
+      </div>
+    </section>
+
+    <section class="section new">
+      <h1>
+        <span>{{title4}}</span>
         <!-- <router-link tag="span" :to="{name: 'movie-list', query: {type:type2}}" class="more">更多>
         </router-link> -->
       </h1>
       <div class="box">
-        <div class="aaa"></div>
-        <div class="bbb"></div>
-        <div class="ccc"></div>
+        <div class="good-item">
+          <a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a>
+        </div>
+        <div class="good-item">
+          <a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a>
+        </div>
       </div>
     </section>
   </div>
@@ -28,38 +101,220 @@
   export default{
     data(){
       return{
-        "title1":"新片上映",
-        "title2":"新片上映"
+        title4:"000",
+        inTheatre:{
+          title:"",
+          type:"in_theaters",
+          subject:[]
+        },
+        coming:{
+          title:"",
+          type:"coming_soon",
+          subject:[]
+        },
+        newM:{
+          title:"",
+          type:"top250",
+          subject:[]
+        }
       }
+    },
+    created:function(){
+      var start = 0,count=8,that=this;
+
+     /* function getIntheater(){
+        return that.$http.post('/api/movie/in_theaters', {
+          start: start,
+          count:count
+        })
+      }
+      function getComing(){
+        return that.$http.post('/api/movie/coming_soon', {
+          start: start,
+          count:count
+        })
+      }
+      function getTop(){
+        return that.$http.post('/api/movie/top250', {
+          start: start,
+          count:count
+        })
+      }
+
+      that.$http.all([getIntheater(), getComing(),getTop()])
+      .then(that.$http.spread(function (a, b,c) {
+        var inTheatreData = a.data,
+            comingData = b.data,
+            top250Data = c.data;
+
+        that.inTheatre.title = inTheatreData.title;
+        that.coming.title = comingData.title;
+        that.newM.title = top250Data.title;
+
+        for(var i = 0;i<8;i++){
+          var obj1 = {},obj2={},obj3={};
+
+          obj1.id=inTheatreData.subjects[i].id;
+          obj1.title = inTheatreData.subjects[i].title;
+          obj1.img = inTheatreData.subjects[i].images.medium;
+          obj1.mark = inTheatreData.subjects[i].rating.average;
+
+
+          obj2.id=comingData.subjects[i].id;
+          obj2.title = comingData.subjects[i].title;
+          obj2.img = comingData.subjects[i].images.medium;
+          obj2.mark = comingData.subjects[i].rating.average;
+
+
+          obj3.title=top250Data.subjects[i].id;
+          obj3.id=top250Data.subjects[i].id;
+          obj3.img = top250Data.subjects[i].images.medium;
+          obj3.mark = top250Data.subjects[i].rating.average;
+
+          that.coming.subject.push(obj2);
+          that.inTheatre.subject.push(obj1);
+          that.newM.subject.push(obj3)
+
+        }
+      }));*/
+      this.$http.post('/api/movie/in_theaters', {
+          start: start,
+          count:count
+      })
+      .then(function(response) {
+        var data = response.data;
+        that.inTheatre.title = data.title;
+        for(var i = 0;i<data.subjects.length;i++){
+          var obj = {};
+          obj.id=data.subjects[i].id;
+          obj.title = data.subjects[i].title;
+          obj.img = data.subjects[i].images.medium;
+          obj.mark = data.subjects[i].rating.average;
+          that.inTheatre.subject.push(obj)
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+      this.$http.post('/api/movie/coming_soon', {
+          start: start,
+          count:count
+      })
+      .then(function(response) {
+        var data = response.data;
+        console.log(data);
+        that.coming.title = data.title;
+        for(var i = 0;i<data.subjects.length;i++){
+          var obj = {};
+          obj.id=data.subjects[i].id;
+          obj.title = data.subjects[i].title;
+          obj.img = data.subjects[i].images.medium;
+          obj.mark = data.subjects[i].rating.average;
+          that.coming.subject.push(obj)
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+      this.$http.post('/api/movie/top250',{
+          start: start,
+          count:count
+      })
+      .then(function(response) {
+        var data = response.data;
+        console.log(data);
+        that.newM.title = data.title;
+        for(var i = 0;i<data.subjects.length;i++){
+          var obj = {};
+          obj.id=data.subjects[i].id;
+          obj.title = data.subjects[i].title;
+          obj.img = data.subjects[i].images.medium;
+          obj.mark = data.subjects[i].rating.average;
+          that.newM.subject.push(obj)
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
     }
+
   }
 </script>
 <style>
   .movie{
     padding: 90px 3% 20px 3%;
   }
+  .section{
+    padding-bottom: 20px;
+  }
+  .section h1{
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  .section h1>span{
+    font-size: 16px;
+    color: #111;
+  }
+  .section h1>a{
+    font-size: 14px;
+    color: #42bd56;
+    text-decoration: none;
+  }
   .box{
+
     width: 100%;
     white-space: nowrap;
+    overflow-x:scroll;
     overflow-x: auto;
-
+    -webkit-overflow-scrolling: touch;
+    overflow-y: hidden;
   }
-  .aaa{
-    display: inline-block;
-    width: 300px;
-    height: 50px;
-    background: red;
+  ::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+    display: none;
+    background: transparent;
   }
-  .bbb{
+  .item{
+    width: 100px;
     display: inline-block;
-    width: 300px;
-    height: 50px;
-    background: blue;
+    margin-right: 16px;
   }
-  .ccc{
+  .item .img{
+    display: block;
+    width: 100px;
+    height: 142px;
+    margin: 0 auto;
+  }
+  .item .info{
+    text-align: center;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+    font-size: 14px;
+    padding-top: 10px;
+    color: #111;
+  }
+  .item .mark{
+    font-size: 12px;
+    text-align: center;
+    line-height: 22px;
+    color: #111;
+  }
+  .item .mark>span{
+    color: #ff4c2e;
+  }
+  .good-item{
+    margin: 0 0 20px 0;
+  }
+  .good-item>a{
     display: inline-block;
-    width: 300px;
-    height: 50px;
-    background: yellow;
+    padding: 6px 10px;
+    color: red;
+    border: 1px solid red;
+    margin-right: 20px;
   }
 </style>
