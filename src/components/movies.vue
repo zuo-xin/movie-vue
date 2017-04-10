@@ -79,11 +79,11 @@
       </div>
     </section>
 
-    <section class="section new">
+    <!-- <section class="section new">
       <h1>
         <span>{{title4}}</span>
-        <!-- <router-link tag="span" :to="{name: 'movie-list', query: {type:type2}}" class="more">更多>
-        </router-link> -->
+        <router-link tag="span" :to="{name: 'movie-list', query: {type:type2}}" class="more">更多>
+        </router-link>
       </h1>
       <div class="box">
         <div class="good-item">
@@ -93,14 +93,20 @@
           <a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a>
         </div>
       </div>
-    </section>
+    </section> -->
+    <v-loading :show="loading"></v-loading>
   </div>
 </template>
 
 <script>
+  import vLoading from './loading.vue'
   export default{
+    components:{
+      vLoading
+    },
     data(){
       return{
+        loading:true,
         title4:"000",
         inTheatre:{
           title:"",
@@ -122,7 +128,7 @@
     created:function(){
       var start = 0,count=8,that=this;
 
-     /* function getIntheater(){
+      function getIntheater(){
         return that.$http.post('/api/movie/in_theaters', {
           start: start,
           count:count
@@ -153,7 +159,6 @@
 
         for(var i = 0;i<8;i++){
           var obj1 = {},obj2={},obj3={};
-
           obj1.id=inTheatreData.subjects[i].id;
           obj1.title = inTheatreData.subjects[i].title;
           obj1.img = inTheatreData.subjects[i].images.medium;
@@ -176,8 +181,12 @@
           that.newM.subject.push(obj3)
 
         }
-      }));*/
-      this.$http.post('/api/movie/in_theaters', {
+        that.loading=false;
+      }))
+      .catch(function(error) {
+        console.log(error);
+      });;
+      /*this.$http.post('/api/movie/in_theaters', {
           start: start,
           count:count
       })
@@ -232,15 +241,13 @@
           obj.mark = data.subjects[i].rating.average;
           that.newM.subject.push(obj)
         }
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+      })*/
+
     }
 
   }
 </script>
-<style>
+<style scoped>
   .movie{
     padding: 90px 3% 20px 3%;
   }
@@ -262,7 +269,6 @@
     text-decoration: none;
   }
   .box{
-
     width: 100%;
     white-space: nowrap;
     overflow-x:scroll;
