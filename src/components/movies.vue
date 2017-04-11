@@ -12,41 +12,6 @@
           <p class="info">{{item.title}}</p>
           <p class="mark">评分：<span>{{item.mark}}</span>/10</p>
         </router-link>
-        <!-- <div class="item">
-          <img class="img" src="../assets/1.jpg" alt="">
-          <p class="info">嫌疑人X的献身</p>
-          <p class="mark">评分：<span>6.1</span>/10</p>
-        </div>
-        <div class="item">
-          <img class="img" src="../assets/1.jpg" alt="">
-          <p class="info">嫌疑人X的献身</p>
-          <p class="mark">评分：<span>6.1</span>/10</p>
-        </div>
-        <div class="item">
-          <img class="img" src="../assets/1.jpg" alt="">
-          <p class="info">嫌疑人X的献身</p>
-          <p class="mark">评分：<span>6.1</span>/10</p>
-        </div>
-        <div class="item">
-          <img class="img" src="../assets/1.jpg" alt="">
-          <p class="info">嫌疑人X的献身</p>
-          <p class="mark">评分：<span>6.1</span>/10</p>
-        </div>
-        <div class="item">
-          <img class="img" src="../assets/1.jpg" alt="">
-          <p class="info">嫌疑人X的献身</p>
-          <p class="mark">评分：<span>6.1</span>/10</p>
-        </div>
-        <div class="item">
-          <img class="img" src="../assets/1.jpg" alt="">
-          <p class="info">嫌疑人X的献身</p>
-          <p class="mark">评分：<span>6.1</span>/10</p>
-        </div>
-        <div class="item">
-          <img class="img" src="../assets/1.jpg" alt="">
-          <p class="info">嫌疑人X的献身</p>
-          <p class="mark">评分：<span>6.1</span>/10</p>
-        </div> -->
       </div>
     </section>
 
@@ -78,22 +43,6 @@
         </router-link>
       </div>
     </section>
-
-    <!-- <section class="section new">
-      <h1>
-        <span>{{title4}}</span>
-        <router-link tag="span" :to="{name: 'movie-list', query: {type:type2}}" class="more">更多>
-        </router-link>
-      </h1>
-      <div class="box">
-        <div class="good-item">
-          <a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a>
-        </div>
-        <div class="good-item">
-          <a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a><a href="">哈哈哈哈或</a>
-        </div>
-      </div>
-    </section> -->
     <v-loading :show="loading"></v-loading>
   </div>
 </template>
@@ -186,63 +135,6 @@
       .catch(function(error) {
         console.log(error);
       });;
-      /*this.$http.post('/api/movie/in_theaters', {
-          start: start,
-          count:count
-      })
-      .then(function(response) {
-        var data = response.data;
-        that.inTheatre.title = data.title;
-        for(var i = 0;i<data.subjects.length;i++){
-          var obj = {};
-          obj.id=data.subjects[i].id;
-          obj.title = data.subjects[i].title;
-          obj.img = data.subjects[i].images.medium;
-          obj.mark = data.subjects[i].rating.average;
-          that.inTheatre.subject.push(obj)
-        }
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-      this.$http.post('/api/movie/coming_soon', {
-          start: start,
-          count:count
-      })
-      .then(function(response) {
-        var data = response.data;
-        console.log(data);
-        that.coming.title = data.title;
-        for(var i = 0;i<data.subjects.length;i++){
-          var obj = {};
-          obj.id=data.subjects[i].id;
-          obj.title = data.subjects[i].title;
-          obj.img = data.subjects[i].images.medium;
-          obj.mark = data.subjects[i].rating.average;
-          that.coming.subject.push(obj)
-        }
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-      this.$http.post('/api/movie/top250',{
-          start: start,
-          count:count
-      })
-      .then(function(response) {
-        var data = response.data;
-        console.log(data);
-        that.newM.title = data.title;
-        for(var i = 0;i<data.subjects.length;i++){
-          var obj = {};
-          obj.id=data.subjects[i].id;
-          obj.title = data.subjects[i].title;
-          obj.img = data.subjects[i].images.medium;
-          obj.mark = data.subjects[i].rating.average;
-          that.newM.subject.push(obj)
-        }
-      })*/
-
     }
 
   }
@@ -269,6 +161,7 @@
     text-decoration: none;
   }
   .box{
+    position: relative;
     width: 100%;
     white-space: nowrap;
     overflow-x:scroll;

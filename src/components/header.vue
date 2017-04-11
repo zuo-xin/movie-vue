@@ -5,7 +5,7 @@
       <div class="menu-box"><a class="menu" href="/movies">电影</a></div>
     </div>
   <div class="item search">
-    <input v-model.trim="query" type="text" class="inp" placeholder="请输入搜索内容">
+    <input v-model.trim="query" type="text" class="inp" @keyup.enter="search()" placeholder="请输入搜索内容">
     <img src="../assets/search.png" class="search-btn" @click="search()"/>
     </div>
   </div>
@@ -20,8 +20,13 @@
     },
     methods:{
       search(){
-        this.$router.push({path:this.path,query:{query:this.query}});
-        this.query="";
+        if(this.query.length){
+          this.$router.push({path:this.path,query:{query:this.query}});
+          this.query="";
+        }else{
+          alert("请输入搜索内容");
+        }
+
       }
     }
   }

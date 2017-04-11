@@ -2,23 +2,34 @@
   <div class="movie-detail">
     <h2 class="movie-title">{{movie.title}}</h2>
     <div class="comment"><p  class="comment-mark">评分：<span>{{movie.mark}}</span>/10</p><p class="comment-num">{{movie.comment}}人评价</p></div>
-    <img src="../assets/1.jpg" class="movie-img" alt="">
+    <img :src="movie.img" class="movie-img" alt="">
 
     <div class="introduce">{{movie.introduce}}</div>
 
     <div class="btn-box"><div class="btn want-num">想看</div><div class="btn watched-num">看过</div></div>
-
     <p class="drama-title">{{movie.title}}的剧情介绍</p>
-    <p class="drama-content">《攻壳机动队》由日本漫画家士郎正宗（Masamune Shirow）创作，故事设定在未来的日本。在未来社会，全世界被庞大信息网络连为一体，人类的各种组织器官均可被人造化。生化人、仿生人、人类共存在地球上，单凭肉眼无法识别。很多人的身体都有着与网络连接的端口（在脖子后面），身体纯粹成为了一个容纳人类灵魂的容器。在这样的背景下，犯罪活动也有了新的动向，日本国家公共安全委员会下属的秘密行动小组“攻壳机动队”就是专门为对付此类犯罪而成立的，由斯嘉丽•约翰逊饰演的主人公素子就是其中的一员。</p>
+    <p class="drama-content">{{movie.drama_content}}</p>
+    <v-loading :show="loading"></v-loading>
   </div>
 </template>
 <script>
+import vLoading from './loading.vue'
 export default{
+  components:{
+    vLoading
+  },
   data(){
     return{
       loading:false,
       id:'',
-      movie:{}
+      movie:{
+        title:"",
+        mark:'',
+        comment:'',
+        img:'',
+        introduce:'',
+        drama_content:''
+      }
     }
   },
   created(){
@@ -38,7 +49,8 @@ export default{
         }
       }
       that.movie.introduce = data.countries.join(' / ') + ' / '+data.genres.join(' / ') + ' / '+data.directors[0].name +'(导演) / ' + act.join(' / ');
-
+      that.movie.img = data.images.large;
+      that.movie.drama_content = data.summary;
       that.loading = false;
     })
     .catch(function(error) {
